@@ -1,0 +1,20 @@
+{
+  "name": "gm-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamestw13/gm-helper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamestw13/gm-helper/issues"
+  },
+  "homepage": "https://github.com/jamestw13/gm-helper#readme"
+}
