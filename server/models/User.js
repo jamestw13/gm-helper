@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const Character = require('./Character');
 
 const UserSchema = new Schema(
   {
@@ -7,16 +6,25 @@ const UserSchema = new Schema(
       type: String,
       required: 'Username is required',
       unique: true,
-      minlength: 7,
+      minlength: 5,
       maxlength: 20,
       trim: true,
     },
+
     email: {
       type: String,
       required: 'Email is required',
       unique: true,
       match: [/.+@.+\..+/, 'Must match an email address!'],
     },
+
+    campaigns: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Campaign',
+      },
+    ],
+
     characters: [
       {
         type: Schema.Types.ObjectId,
@@ -32,6 +40,7 @@ const UserSchema = new Schema(
 );
 
 UserSchema.virtual('characterCount').get(() => this.characters.length);
+UserSchema.virtual('campaignCount').get(() => this.campaigns.length);
 
 const User = model('User', UserSchema);
 

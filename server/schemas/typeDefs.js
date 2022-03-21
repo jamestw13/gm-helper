@@ -8,10 +8,28 @@ const typeDefs = gql`
     character(_id: ID!): Character
   }
 
+  type Mutation {
+    addUser(username: String!, email: String!): User
+    addCharacter(
+      name: String!
+      race: String!
+      class: String!
+      level: Int
+    ): Character
+  }
+
   type User {
     _id: ID
     username: String
     email: String
+    characters: [Character]
+  }
+
+  type Campaign {
+    _id: ID
+    name: String
+    gamemaster: User
+    players: [User]
     characters: [Character]
   }
 
@@ -21,15 +39,6 @@ const typeDefs = gql`
     race: String
     class: String
     level: Int
-  }
-  type Mutation {
-    addUser(username: String!, email: String!): User
-    addCharacter(
-      name: String!
-      race: String!
-      class: String!
-      level: Int
-    ): Character
   }
 `;
 
