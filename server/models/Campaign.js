@@ -6,13 +6,12 @@ const CampaignSchema = new Schema(
       type: String,
       required: 'Campaigns need names.',
       minlength: 5,
-      maxlenght: 20,
+      maxlength: 50,
       trim: true,
     },
 
     gamemaster: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+      type: String,
       required: 'Campaigns need a master.',
     },
 

@@ -12,14 +12,14 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!): User
-    addCampaign(gamemaster: User!, name: String!)
+    addCampaign(gamemaster: ID!, name: String!): Campaign
     addCharacter(
-      player: User!
+      player: ID!
       name: String!
       race: String!
       class: String!
       level: Int
-      campaign: Campaign
+      campaign: ID
     ): Character
   }
 
@@ -29,6 +29,8 @@ const typeDefs = gql`
     email: String
     campaigns: [Campaign]
     characters: [Character]
+    characterCount: Int
+    campaignCount: Int
   }
 
   type Campaign {
