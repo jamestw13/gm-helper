@@ -4,13 +4,16 @@ const { Character, User, Campaign } = require('../models');
 
 const resolvers = {
   Query: {
-    users: async () => User.find().populate('characters'),
+    users: async () => User.find().populate('characters').populate('campaigns'),
 
     user: async () =>
       User.findOne({ username }).populate('characters').populate('campaigns'),
 
     campaigns: async () =>
-      Campaign.find().populate('players').populate('characters'),
+      Campaign.find()
+        .populate('players')
+        .populate('characters')
+        .populate('gamemaster'),
 
     campaign: async () =>
       Campaign.findOne({ _id }).populate('players').populate('characters'),
