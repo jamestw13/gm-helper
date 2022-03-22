@@ -13,6 +13,7 @@ const resolvers = {
       Campaign.find()
         .populate('players')
         .populate('characters')
+        .populate('characters.player')
         .populate('gamemaster'),
 
     campaign: async () =>
