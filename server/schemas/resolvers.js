@@ -22,7 +22,15 @@ const resolvers = {
 
     characters: async (parent, { name }) => {
       const params = name ? { name } : {};
-      return Character.find(params);
+      return Character.find(params).populate({
+        path: 'player',
+        populate: {
+          path: 'characters',
+          populate: {
+            path: 'player',
+          },
+        },
+      });
     },
   },
   Mutation: {

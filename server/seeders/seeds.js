@@ -52,7 +52,7 @@ db.once('open', async () => {
     players.push(gamemaster);
 
     players.forEach(async player => {
-      const updatedUser = await User.updateOne(
+      await User.updateOne(
         { _id: player },
         {
           $push: {
@@ -64,7 +64,54 @@ db.once('open', async () => {
   }
 
   /* Make Characters */
+  const races = [
+    'Android',
+    'Human',
+    'Kasatha',
+    'Lashunta',
+    'Shirren',
+    'Vesk',
+    'Ysoki',
+  ];
+  const classes = [
+    'Envoy',
+    'Mechanic',
+    'Mystic',
+    'Operative',
+    'Solarian',
+    'Soldier',
+    'Technomancer',
+  ];
   const characterData = [];
+
+  for (let i = 0; i < 100; i++) {
+    const name = `${faker.name.firstName()} ${faker.name.jobType()}`;
+    const race = faker.random.arrayElement(races);
+    const characterClass = faker.random.arrayElement(classes);
+    const level = Math.floor(Math.random() * 20) + 1;
+
+    const randomUserIndex = Math.floor(Math.random() * createdUsers.length);
+    const { _id: player } = createdUsers[randomUserIndex];
+
+    const createdCharacter = await Character.create({
+      name,
+      race,
+      class: characterClass,
+      level,
+      player,
+    });
+
+    const updatedUser = await User.updateOne(
+      { _id: player },
+      {
+        $push: {
+          characters: createdCharacter,
+        },
+      }
+    );
+  }
+
+  const createdCharacters = await Character.insertMany(characterData);
 
   console.log('Finished seeding');
   process.exit(0);
