@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 
 function Header() {
+  const { loading, data } = useQuery(QUERY_ME);
+  const username = data?.me.username || '';
+
   const logout = event => {
     event.preventDefault();
     Auth.logout();
@@ -18,7 +23,8 @@ function Header() {
       <Link to='/'>
         <h1>GM Helper</h1>
       </Link>
-      <div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <h3>{username}</h3>
         {Auth.loggedIn() ? (
           <a href='/' onClick={logout}>
             Logout
