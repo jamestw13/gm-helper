@@ -1,4 +1,5 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_CAMPAIGNS } from '../utils/queries';
@@ -6,7 +7,6 @@ import { QUERY_CAMPAIGNS } from '../utils/queries';
 function Dashboard() {
   const { loading, data } = useQuery(QUERY_CAMPAIGNS);
   const campaigns = data?.campaigns || [];
-  console.log(campaigns);
 
   return (
     <>
