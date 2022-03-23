@@ -1,5 +1,5 @@
-const { buildSchemaFromTypeDefinitions } = require('apollo-server-express');
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const UserSchema = new Schema(
   {
@@ -46,15 +46,16 @@ const UserSchema = new Schema(
   }
 );
 
-UserSchema.pre('save', async next => {
-  if (this.isNew || this.isModified('password')) {
+UserSchema.pre('save', async function (next) {
+  if (this.isNew || isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
+    console.log(this.password);
   }
   next();
 });
 
-UserSchema.methods.isCorrectPassword = async password => {
+UserSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 

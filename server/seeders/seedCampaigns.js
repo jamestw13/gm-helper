@@ -1,6 +1,6 @@
 const { faker } = require('@faker-js/faker');
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Campaign, Character } = require('../models');
+const { User, Campaign } = require('../models');
 
 const NUM_CAMPAIGNS = 50;
 /*------------------------------------*/
