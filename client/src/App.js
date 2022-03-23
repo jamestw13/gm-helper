@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import NoMatch from './pages/NoMatch';
@@ -29,7 +30,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -40,13 +41,14 @@ function App() {
         <Header />
         <main style={{ margin: 'auto', maxWidth: '1000px' }}>
           <Routes>
-            <Route exact path='/' element={<Dashboard />} />
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/profile' element={<Dashboard />} />
             <Route exact path='/login' element={<Login />} />
 
             <Route path='*' element={<NoMatch />} />
           </Routes>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </ApolloProvider>
   );

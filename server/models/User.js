@@ -50,7 +50,6 @@ UserSchema.pre('save', async function (next) {
   if (this.isNew || isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
-    console.log(this.password);
   }
   next();
 });
