@@ -1,5 +1,8 @@
 const { faker } = require('@faker-js/faker');
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Campaign, Character } = require('../models');
+
+const NUM_CHARACTERS = 100;
 
 const races = [
   'Android',
@@ -26,32 +29,37 @@ const classes = [
 /*------------------------------------*/
 
 module.exports = async function seedCharacters() {
-  const createdUsers = await User.find();
+  try {
+    const createdUsers = await User.find();
 
-  for (let i = 0; i < 100; i++) {
-    const name = `${faker.name.firstName()} ${faker.name.jobType()}`;
-    const race = faker.random.arrayElement(races);
-    const characterClass = faker.random.arrayElement(classes);
-    const level = Math.floor(Math.random() * 20) + 1;
+    for (let i = 0; i < NUM_CHARACTERS; i++) {
+      const name = `${faker.name.firstName()} ${faker.name.jobType()}`;
+      const race = faker.random.arrayElement(races);
+      const characterClass = faker.random.arrayElement(classes);
+      const level = Math.floor(Math.random() * 20) + 1;
 
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.length);
-    const { _id: player } = createdUsers[randomUserIndex];
+      const randomUserIndex = Math.floor(Math.random() * createdUsers.length);
+      const { _id: player } = createdUsers[randomUserIndex];
 
-    const createdCharacter = await Character.create({
-      name,
-      race,
-      class: characterClass,
-      level,
-      player,
-    });
+      const createdCharacter = await Character.create({
+        name,
+        race,
+        class: characterClass,
+        level,
+        player,
+      });
 
-    const updatedUser = await User.updateOne(
-      { _id: player },
-      {
-        $push: {
-          characters: createdCharacter,
-        },
-      }
-    );
+      const updatedUser = await User.updateOne(
+        { _id: player },
+        {
+          $push: {
+            characters: createdCharacter,
+          },
+        }
+      );
+    }
+    console.log(`${NUM_CHARACTERS} characters seeded.`);
+  } catch {
+    throw new AuthenticationError('Issue seeding characters');
   }
 };
