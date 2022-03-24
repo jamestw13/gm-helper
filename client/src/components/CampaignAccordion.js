@@ -9,7 +9,7 @@ import {
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function CharacterAccordion({ characters }) {
+export default function CharacterAccordion({ campaigns }) {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = panel => (event, isExpanded) => {
@@ -19,26 +19,26 @@ export default function CharacterAccordion({ characters }) {
   return (
     <section>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h3>Your Characters</h3>
-        <Button>Add Character</Button>
+        <h3>Your Campaigns</h3>
+        <Button>Add Campaign</Button>
       </div>
-      {characters.map((character, index) => (
+      {campaigns.map((campaign, index) => (
         <Accordion
           key={index}
           sx={{ width: '100%' }}
-          expanded={expanded === index}
-          onChange={handleChange(index)}
+          expanded={expanded === campaign._id}
+          onChange={handleChange(campaign._id)}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls={`${index}bh-content`}
-            id={`${index}bh-header`}
+            aria-controls={`${campaign._id}bh-content`}
+            id={`${campaign._id}bh-header`}
           >
             <Typography sx={{ width: '33%', flexShrink: 0 }}>
-              {character.name}
+              {campaign.name}
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>
-              {`Level ${character.level} ${character.race} ${character.class}`}
+              {`Level (campaign system)`}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>

@@ -19,8 +19,7 @@ module.exports = async function seedCampaigns() {
         const randomUserIndex = Math.floor(Math.random() * createdUsers.length);
         const { _id: userId } = createdUsers[randomUserIndex];
 
-        // ensure no duplicate users
-        if (!players.includes(userId)) players.push(userId);
+        players.push(userId);
       }
 
       // campaign name
@@ -34,6 +33,8 @@ module.exports = async function seedCampaigns() {
         name,
         gamemaster,
       });
+
+      players.push(gamemaster);
 
       players.forEach(async player => {
         await User.findOne({ _id: player }, { characters: 1 })

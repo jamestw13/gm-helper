@@ -7,7 +7,7 @@ const seedUsers = require('./seedUsers');
 const seedCharacters = require('./seedCharacters');
 const seedCampaigns = require('./seedCampaigns');
 
-db.once('open', async () => {
+async function seed() {
   await User.deleteMany({});
   await Campaign.deleteMany({});
   await Character.deleteMany({});
@@ -18,4 +18,6 @@ db.once('open', async () => {
 
   console.log('Finished seeding');
   process.exit(0);
-});
+}
+
+seed();

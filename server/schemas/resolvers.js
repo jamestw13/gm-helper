@@ -8,7 +8,13 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('campaigns')
+          .populate({
+            path: 'campaigns',
+            populate: {
+              path: 'gamemaster',
+              model: 'User',
+            },
+          })
           .populate('characters');
         return userData;
       }
@@ -19,8 +25,20 @@ const resolvers = {
       User.find()
         .populate('characters')
         .select('-__v -password')
-        .populate('campaigns')
-        .populate('characters'),
+        .populate({
+          path: 'campaigns',
+          populate: {
+            path: 'gamemaster',
+            model: 'User',
+          },
+        })
+        .populate({
+          path: 'campaigns',
+          populate: {
+            path: 'players characters',
+            // model: 'User Character',
+          },
+        }),
 
     user: async (parent, { username }) =>
       User.findOne({ username })

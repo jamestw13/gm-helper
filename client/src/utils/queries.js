@@ -27,8 +27,16 @@ export const QUERY_ME = gql`
       campaigns {
         _id
         name
-        players {
+        gamemaster {
           username
+        }
+        players {
+          _id
+          username
+        }
+        characters {
+          _id
+          name
         }
       }
     }
