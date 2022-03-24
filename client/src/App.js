@@ -41,10 +41,9 @@ function App() {
         <Header />
         <main style={{ margin: 'auto', maxWidth: '1000px' }}>
           <Routes>
-            <Route exact path='/' element={<Home />} />
+            <Route exact path='' element={<Home />} />
             <Route exact path='/profile' element={<Dashboard />} />
             <Route exact path='/login' element={<Login />} />
-
             <Route path='*' element={<NoMatch />} />
           </Routes>
         </main>

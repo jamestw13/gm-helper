@@ -21,7 +21,7 @@ function Header() {
       }}
     >
       <Link to='/'>
-        <h1>GM Helper</h1>
+        <h1>Campaign Helper</h1>
       </Link>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <h3>{username}</h3>

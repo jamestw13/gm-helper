@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 
 function Login(props) {
   if (Auth.loggedIn()) {
-    window.location.assign('/');
+    window.location.assign('');
   }
 
   const [login, { error }] = useMutation(LOGIN_USER);
