@@ -6,39 +6,29 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
+        return await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate({
             path: 'campaigns',
-            populate: {
-              path: 'gamemaster',
-              model: 'User',
-            },
+            populate: { path: 'gamemaster players characters' },
           })
-          .populate('characters');
-        return userData;
+          .populate({
+            path: 'characters',
+            poplate: { path: 'player' },
+          });
       }
       throw new AuthenticationError('Not logged in.');
     },
 
     users: async () =>
       User.find()
-        .populate('characters')
         .select('-__v -password')
+
         .populate({
           path: 'campaigns',
-          populate: {
-            path: 'gamemaster',
-            model: 'User',
-          },
+          populate: { path: 'gamemaster players' },
         })
-        .populate({
-          path: 'campaigns',
-          populate: {
-            path: 'players characters',
-            // model: 'User Character',
-          },
-        }),
+        .populate({ path: 'characters', poplate: { path: 'player' } }),
 
     user: async (parent, { username }) =>
       User.findOne({ username })
@@ -51,7 +41,6 @@ const resolvers = {
       return Campaign.find(params)
         .populate('players')
         .populate('characters')
-        .populate('characters.player')
         .populate('gamemaster');
     },
 

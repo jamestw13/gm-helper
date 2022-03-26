@@ -16,6 +16,7 @@ export default function CharacterAccordion({ characters }) {
     setExpanded(isExpanded ? panel : false);
   };
 
+  console.log('characters: ', characters);
   return (
     <section>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -35,14 +36,14 @@ export default function CharacterAccordion({ characters }) {
             id={`${index}bh-header`}
           >
             <Typography sx={{ width: '33%', flexShrink: 0 }}>
-              {character.name}
+              {`${character.name}`}
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>
               {`Level ${character.level} ${character.race} ${character.class}`}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>More Character Info</Typography>
+            <Typography>{`More Character Info ${character.name}`}</Typography>
           </AccordionDetails>
         </Accordion>
       ))}

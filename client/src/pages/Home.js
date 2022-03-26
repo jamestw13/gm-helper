@@ -12,18 +12,21 @@ const Home = () => {
   }
 
   const { loading, data } = useQuery(QUERY_ME);
+  const characters = data?.me.characters || [];
 
   const campaigns = data?.me.campaigns || [];
-  const characters = data?.me.characters || [];
+  console.log("user's campaigns: ", campaigns);
+
   const campaignsAsGamemaster = campaigns.filter(
     campaign => campaign.gamemaster.username === data.me.username
   );
-
-  const campaignsAsPlayer = campaigns.filter(
-    campaign => campaign.gamemaster.username === data.me.username
-  );
-  console.log("user's campaigns: ", campaigns);
   console.log('user is gamemaster: ', campaignsAsGamemaster);
+
+  const campaignsAsPlayer = campaigns.filter(campaign => {
+    const playerNames = campaign.players.map(({ username }) => username);
+
+    return playerNames.includes(data.me.username);
+  });
   console.log('user is player: ', campaignsAsPlayer);
 
   return (
@@ -31,13 +34,6 @@ const Home = () => {
       <div>
         {loading && <div>Loading...</div>}
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          {/* <div>
-            <h3>Your Campaigns</h3>
-            {campaigns.map(campaign => {
-              return <h4 key={campaign._id}>{campaign.name}</h4>;
-            })}
-          </div> */}
-
           {data && <CharacterAccordion characters={characters} />}
           {data && <CampaignAccordion campaigns={campaigns} />}
         </div>

@@ -37,6 +37,9 @@ export const QUERY_ME = gql`
         characters {
           _id
           name
+          player {
+            username
+          }
         }
       }
     }

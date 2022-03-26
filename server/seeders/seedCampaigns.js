@@ -33,20 +33,31 @@ module.exports = async function seedCampaigns() {
         name,
         gamemaster,
       });
-
-      players.push(gamemaster);
+      // add created campaign to gamemaster's user
+      await User.updateOne(
+        { _id: gamemaster._id },
+        {
+          $push: {
+            campaigns: createdCampaign._id,
+          },
+        },
+        { new: true }
+      );
 
       players.forEach(async player => {
+        // Select random character from player
         await User.findOne({ _id: player }, { characters: 1 })
           .then(characterData =>
             faker.random.arrayElement(characterData.characters)
           )
+          // add character to created campaign
           .then(async character => {
             if (character) {
               await Campaign.updateOne(
                 { _id: createdCampaign },
                 { $push: { characters: character, players: player } }
               );
+              // add created campaign to player's user
               await User.updateOne(
                 { _id: player },
                 {
