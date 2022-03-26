@@ -32,10 +32,27 @@ const Home = () => {
   return (
     <main>
       <div>
-        {loading && <div>Loading...</div>}
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          {data && <CharacterAccordion characters={characters} />}
-          {data && <CampaignAccordion campaigns={campaigns} />}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-around',
+            flexWrap: 'wrap',
+          }}
+        >
+          <div>
+            <h2>Your Characters</h2>
+            {loading ? (
+              <h3>Loading...</h3>
+            ) : (
+              <CharacterAccordion characters={characters} />
+            )}
+          </div>
+          <div>
+            <h2>Campaigns you own</h2>
+            {data && <CampaignAccordion campaigns={campaignsAsGamemaster} />}
+            <h2>Campaigns you play</h2>
+            {data && <CampaignAccordion campaigns={campaignsAsPlayer} />}
+          </div>
         </div>
       </div>
     </main>

@@ -19,7 +19,6 @@ export default function CharacterAccordion({ campaigns }) {
   return (
     <section>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h3>Your Campaigns</h3>
         <Button>Add Campaign</Button>
       </div>
       {campaigns.map((campaign, index) => (
