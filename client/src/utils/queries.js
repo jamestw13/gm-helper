@@ -9,6 +9,14 @@ export const QUERY_CAMPAIGNS = gql`
   }
 `;
 
+export const QUERY_USERNAMES = gql`
+  query users {
+    users {
+      username
+    }
+  }
+`;
+
 export const QUERY_ME = gql`
   {
     me {
