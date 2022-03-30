@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 import DashNav from '../components/DashNav';
-import Dashboard from '../components/Dashboard';
 
 const Home = () => {
   // check if logged in
