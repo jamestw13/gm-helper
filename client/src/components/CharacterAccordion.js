@@ -16,36 +16,36 @@ export default function CharacterAccordion({ characters }) {
     setExpanded(isExpanded ? panel : false);
   };
 
-  console.log('characters: ', characters);
   return (
     <section>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h3>Your Characters</h3>
         <Button>Add Character</Button>
       </div>
       {characters.map((character, index) => (
-        <Accordion
-          key={index}
-          sx={{ width: '100%' }}
-          expanded={expanded === index}
-          onChange={handleChange(index)}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`${index}bh-content`}
-            id={`${index}bh-header`}
+        <div key={index} style={{ display: 'flex' }}>
+          <Accordion
+            sx={{ width: '100%' }}
+            expanded={expanded === index}
+            onChange={handleChange(index)}
           >
-            <Typography sx={{ width: '33%', flexShrink: 0 }}>
-              {`${character.name}`}
-            </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              {`Level ${character.level} ${character.race} ${character.class}`}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>{`More Character Info ${character.name}`}</Typography>
-          </AccordionDetails>
-        </Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`${index}bh-content`}
+              id={`${index}bh-header`}
+            >
+              <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                {`${character.name}`}
+              </Typography>
+              <Typography sx={{ color: 'text.secondary' }}>
+                {`Level ${character.level} ${character.race} ${character.class}`}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>{`More Character Info ${character.name}`}</Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Button data-character-id={character._id}>Sheet</Button>
+        </div>
       ))}
     </section>
   );

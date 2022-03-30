@@ -53,3 +53,12 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_CHARACTER = gql`
+  query character {
+    character(_id: "623f5e5a77b6ae57739dbd8e") {
+      name
+      class
+    }
+  }
+`;

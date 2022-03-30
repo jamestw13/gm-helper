@@ -9,11 +9,11 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
 import NoMatch from './pages/NoMatch';
+import Dashboard from './components/Dashboard';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -41,8 +41,11 @@ function App() {
         <Header />
         <main style={{ margin: 'auto', maxWidth: '1000px' }}>
           <Routes>
-            <Route exact path='' element={<Home />} />
-            <Route exact path='/profile' element={<Dashboard />} />
+            <Route index element={<Home />} />
+            <Route exact path='/*' element={<Home />}>
+              <Route path='dashboard' element={<Dashboard />} />
+            </Route>
+
             <Route exact path='/login' element={<Login />} />
             <Route path='*' element={<NoMatch />} />
           </Routes>

@@ -9,7 +9,10 @@ body {
   background-color: gray;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav {
+  display: flex;
+
+  justify-content: space-around;
+  align-items: center;
+  line-height: 1;
 }
