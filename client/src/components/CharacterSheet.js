@@ -1,9 +1,12 @@
-export default function CharacterSheet({ character }) {
-  console.log(character);
+import { useParams } from 'react-router-dom';
+
+export default function CharacterSheet() {
+  const { characterId } = useParams();
+
+  console.log(characterId);
   return (
     <>
       <h1>Character Sheet</h1>
-      {!character ? <h2>{character}</h2> : <h2>Loading</h2>}
     </>
   );
 }

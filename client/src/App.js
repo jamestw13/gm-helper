@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Dashboard from './components/Dashboard';
+import CharacterSheet from './components/CharacterSheet';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -42,8 +43,12 @@ function App() {
         <main style={{ margin: 'auto', maxWidth: '1000px' }}>
           <Routes>
             <Route index element={<Home />} />
-            <Route exact path='/*' element={<Home />}>
-              <Route path='dashboard' element={<Dashboard />} />
+            <Route exact path='' element={<Home />}>
+              <Route path='/dashboard' element={<Dashboard />} />
+              <Route
+                path='/character/:characterId'
+                element={<CharacterSheet />}
+              />
             </Route>
 
             <Route exact path='/login' element={<Login />} />

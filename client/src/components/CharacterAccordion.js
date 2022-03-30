@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Link } from 'react-router-dom';
 
 export default function CharacterAccordion({ characters }) {
   const [expanded, setExpanded] = useState(false);
@@ -41,10 +42,11 @@ export default function CharacterAccordion({ characters }) {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>{`More Character Info ${character.name}`}</Typography>
+              <Link to={`/character/${character._id}`}>
+                Open Character Sheet
+              </Link>
             </AccordionDetails>
           </Accordion>
-          <Button data-character-id={character._id}>Sheet</Button>
         </div>
       ))}
     </section>
