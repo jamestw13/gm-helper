@@ -1,49 +1,29 @@
-import { useState } from 'react';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-  Button,
-} from '@mui/material';
-
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useEffect, useState } from 'react';
 
 export default function CharacterAccordion({ campaigns }) {
-  const [expanded, setExpanded] = useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const [openCampaigns, setOpenCampaigns] = useState([]);
 
   return (
     <section>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button>Add Campaign</Button>
+        <h3>Campaigns</h3>
+        <button>Add Campaign</button>
       </div>
       {campaigns.map((campaign, index) => (
-        <Accordion
-          key={index}
+        <div
+          className='campaign-accordion'
           sx={{ width: '100%' }}
-          expanded={expanded === campaign._id}
-          onChange={handleChange(campaign._id)}
+          // expanded={expanded === campaign._id}
+          key={index}
         >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`${campaign._id}bh-content`}
-            id={`${campaign._id}bh-header`}
-          >
-            <Typography sx={{ width: '33%', flexShrink: 0 }}>
-              {campaign.name}
-            </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              {`Level (campaign system)`}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>More Character Info</Typography>
-          </AccordionDetails>
-        </Accordion>
+          <div className='summary'>
+            <h4>{campaign.name}</h4>
+            <h5>{`Level (campaign system)`}</h5>
+          </div>
+          <div className='details' hidden>
+            <p>More Character Info</p>
+          </div>
+        </div>
       ))}
     </section>
   );

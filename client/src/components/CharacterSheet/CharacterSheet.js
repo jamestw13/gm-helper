@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_CHARACTER } from '../../utils/queries';
 
-import { Grid, TextField } from '@mui/material';
 import AbilityScores from './AbilityScores';
 import Skills from './Skills';
 
@@ -20,32 +19,27 @@ export default function CharacterSheet() {
       <h1>Character Sheet</h1>
       <section className='character-summary'>
         <div>
-          <TextField
+          <input
+            type='text'
             required
             id=''
             label='Character Name'
             defaultValue={characterName}
           />
-          <TextField select id='' label='Class' defaultValue={characterClass} />
-          <TextField select id='' label='Level' defaultValue='' />
-          <TextField select id='' label='Race' defaultValue='' />
-          <TextField select id='' label='Theme' defaultValue='' />
-          <TextField select id='' label='Size' defaultValue='' />
-          <TextField id='' label='Speed' defaultValue='' />
-          <TextField id='' label='Gender' defaultValue='' />
-          <TextField id='' label='Home World' defaultValue='' />
-          <TextField select id='' label='Alignment' defaultValue='' />
-          <TextField id='' label='Deity' defaultValue='' />
-          <TextField id='' label='Player' defaultValue='' />
+          <select id='' label='Class' defaultValue={characterClass} />
+          <select id='' label='Level' defaultValue='' />
+          <select id='' label='Race' defaultValue='' />
+          <select id='' label='Theme' defaultValue='' />
+          <select id='' label='Size' defaultValue='' />
+          <input id='' label='Speed' defaultValue='' />
+          <input id='' label='Gender' defaultValue='' />
+          <input id='' label='Home World' defaultValue='' />
+          <select id='' label='Alignment' defaultValue='' />
+          <input id='' label='Deity' defaultValue='' />
+          <input id='' label='Player' defaultValue='' />
         </div>
         <div className='character-section character-description'>
-          <TextField
-            id=''
-            multiline
-            minRows={4}
-            label='Description'
-            defaultValue=''
-          />
+          <input id='' label='Description' defaultValue='' />
         </div>
       </section>
       <AbilityScores />

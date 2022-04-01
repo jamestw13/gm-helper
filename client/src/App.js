@@ -14,7 +14,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Dashboard from './components/Dashboard';
-import CharacterSheet from './components/CharacterSheet';
+import CharacterSheet from './components/CharacterSheet/CharacterSheet';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',

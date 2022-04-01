@@ -1,52 +1,28 @@
 import { useState } from 'react';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-  Button,
-} from '@mui/material';
 
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link } from 'react-router-dom';
 
 export default function CharacterAccordion({ characters }) {
-  const [expanded, setExpanded] = useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-
   return (
     <section>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button>Add Character</Button>
+        <button>Add Character</button>
       </div>
       {characters.map((character, index) => (
         <div key={index} style={{ display: 'flex' }}>
-          <Accordion
-            sx={{ width: '100%' }}
-            expanded={expanded === index}
-            onChange={handleChange(index)}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={`${index}bh-content`}
-              id={`${index}bh-header`}
-            >
-              <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                {`${character.name}`}
-              </Typography>
-              <Typography sx={{ color: 'text.secondary' }}>
+          <div sx={{ width: '100%' }}>
+            <div aria-controls={`${index}bh-content`} id={`${index}bh-header`}>
+              <h4>{`${character.name}`}</h4>
+              <h5 sx={{ color: 'text.secondary' }}>
                 {`Level ${character.level} ${character.race} ${character.class}`}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
+              </h5>
+            </div>
+            <div>
               <Link to={`/character/${character._id}`}>
                 Open Character Sheet
               </Link>
-            </AccordionDetails>
-          </Accordion>
+            </div>
+          </div>
         </div>
       ))}
     </section>
