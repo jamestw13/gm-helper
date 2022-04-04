@@ -12,7 +12,6 @@ export default function CharacterAccordion({ campaigns }) {
       {campaigns.map((campaign, index) => (
         <div
           className='campaign-accordion'
-          sx={{ width: '100%' }}
           // expanded={expanded === campaign._id}
           key={index}
         >

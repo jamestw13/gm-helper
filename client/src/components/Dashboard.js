@@ -28,14 +28,8 @@ function Dashboard() {
         <h2>Loading</h2>
       ) : (
         <div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              flexWrap: 'wrap',
-            }}
-          >
-            <div style={{ backgroundColor: 'lightblue', padding: '5px' }}>
+          <div>
+            <div>
               <h2>Your Characters</h2>
               {loading ? (
                 <h3>Loading...</h3>

@@ -9,11 +9,11 @@ export default function CharacterAccordion({ characters }) {
         <button>Add Character</button>
       </div>
       {characters.map((character, index) => (
-        <div key={index} style={{ display: 'flex' }}>
-          <div sx={{ width: '100%' }}>
+        <div key={index}>
+          <div>
             <div aria-controls={`${index}bh-content`} id={`${index}bh-header`}>
               <h4>{`${character.name}`}</h4>
-              <h5 sx={{ color: 'text.secondary' }}>
+              <h5>
                 {`Level ${character.level} ${character.race} ${character.class}`}
               </h5>
             </div>
