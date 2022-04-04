@@ -17,8 +17,8 @@ export default function CharacterSheet() {
   return (
     <>
       <h1>Character Sheet</h1>
-      <section className='character-summary'>
-        <div>
+      <section className='grid'>
+        <div className='grid'>
           <input
             type='text'
             required

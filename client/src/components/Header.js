@@ -8,11 +8,14 @@ function Header() {
   };
 
   return (
-    <nav>
+    <nav className='flex'>
       <Link to='/'>
         <h1>Campaign Helper</h1>
       </Link>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <Link to='/design-system'>
+        <h2>Design System</h2>
+      </Link>
+      <div>
         {Auth.loggedIn() ? (
           <a href='/' onClick={logout}>
             Logout

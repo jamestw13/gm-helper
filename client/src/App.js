@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Dashboard from './components/Dashboard';
 import CharacterSheet from './components/CharacterSheet/CharacterSheet';
+import DesignSystem from './pages/DesignSystem';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -40,7 +41,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Header />
-        <main style={{ margin: 'auto', maxWidth: '1000px' }}>
+        <main className=''>
           <Routes>
             <Route index element={<Home />} />
             <Route exact path='' element={<Home />}>
@@ -52,6 +53,7 @@ function App() {
             </Route>
 
             <Route exact path='/login' element={<Login />} />
+            <Route exact path='/design-system' element={<DesignSystem />} />
             <Route path='*' element={<NoMatch />} />
           </Routes>
         </main>

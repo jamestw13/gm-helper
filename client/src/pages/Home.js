@@ -18,11 +18,11 @@ const Home = () => {
   const username = data?.me.username || '';
 
   return (
-    <>
+    <div className='container'>
       <DashNav username={username} />
       {loading && <h1>Loading</h1>}
       <Outlet />
-    </>
+    </div>
   );
 };
 
