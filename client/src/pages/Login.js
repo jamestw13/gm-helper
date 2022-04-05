@@ -60,7 +60,10 @@ function Login(props) {
       </form>
       {error && <div>Login failed</div>}
       <h4>Users to test with: use password 12345</h4>
-      <ul>{data && data.users.map(user => <li>{user.username}</li>)}</ul>
+      <ul>
+        {data &&
+          data.users.map((user, index) => <li key={index}>{user.username}</li>)}
+      </ul>
     </main>
   );
 }
