@@ -128,6 +128,10 @@ select {
   gap: var(--gap, 1rem);
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
@@ -365,4 +369,8 @@ select {
 .numbered-indicators > [aria-selected='true'] {
   color: hsl(var(--clr-dark));
   background-color: hsl(var(--clr-white) / 1);
+}
+
+.cs-label > * {
+  margin-inline-start: 0.25em;
 }
