@@ -12,8 +12,6 @@ export default function CharacterSheet() {
   const { data: characterData } = useQuery(QUERY_CHARACTER, {
     variables: { _id: characterId },
   });
-  const characterName = characterData?.character.name || '';
-  const characterClass = characterData?.character.class || '';
 
   return (
     <div className='flow'>

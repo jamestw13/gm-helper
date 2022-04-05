@@ -9,7 +9,7 @@ function Login(props) {
     window.location.assign('');
   }
 
-  const { loading, data } = useQuery(QUERY_USERNAMES);
+  const { data } = useQuery(QUERY_USERNAMES);
   const [login, { error }] = useMutation(LOGIN_USER);
   const [formState, setFormState] = useState({ email: '', password: '' });
 
