@@ -374,3 +374,16 @@ select {
 .cs-label > * {
   margin-inline-start: 0.25em;
 }
+
+.character-stats {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ability-scores {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.25em;
+}
+
+.short-input {
+  max-inline-size: 3em;
+}

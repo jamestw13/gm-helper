@@ -16,12 +16,22 @@ export default function CharacterSheet() {
   const characterClass = characterData?.character.class || '';
 
   return (
-    <>
+    <div className='flow'>
+      <h1>Character Sheet</h1>
       <CharacterSummary characterData={characterData} />
 
-      <AbilityScores />
+      <div className='grid character-stats'>
+        <div className='flow'>
+          <AbilityScores />
 
-      <Skills />
-    </>
+          <Skills />
+        </div>
+        <div className='flow'>
+          <AbilityScores />
+
+          <Skills />
+        </div>
+      </div>
+    </div>
   );
 }

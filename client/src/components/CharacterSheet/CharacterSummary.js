@@ -90,7 +90,7 @@ export default function CharacterSummary({ characterData }) {
 
   return (
     <>
-      <h1>Character Sheet</h1>
+      <h2>Character Summary</h2>
       <section className='flex'>
         <div className='flex flex-wrap'>
           <input
